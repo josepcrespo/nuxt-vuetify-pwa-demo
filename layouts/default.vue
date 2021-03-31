@@ -1,5 +1,5 @@
 <template>
-  <v-app dark>
+  <v-app>
     <v-navigation-drawer
       v-model="drawer"
       app
@@ -30,10 +30,20 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title v-text="title" />
       <v-spacer />
-      <v-btn>
-        <v-icon left>mdi-login</v-icon>
-        Login
-      </v-btn>
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            color="primary"
+            dark
+            v-bind="attrs"
+            v-on="on"
+          >
+            <v-icon left>mdi-database-refresh</v-icon>
+            Get new data
+          </v-btn>
+        </template>
+        <span>Discard current data and, get new random data from randomuser.me API</span>
+      </v-tooltip>
     </v-app-bar>
     <v-main>
       <v-container>
@@ -60,7 +70,7 @@ export default {
           to: '/inspire'
         }
       ],
-      title: 'Vuetify.js'
+      title: 'Random Users Explorer'
     }
   }
 }
