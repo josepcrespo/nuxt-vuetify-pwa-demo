@@ -61,13 +61,13 @@ export default {
       items: [
         {
           icon: 'mdi-apps',
-          title: 'Welcome',
+          title: 'Start',
           to: '/'
         },
         {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire'
+          icon: 'mdi-heart',
+          title: 'Favorites Lists',
+          to: '/favorites-lists'
         }
       ],
       title: 'Random Users Explorer'
