@@ -4,9 +4,9 @@
     justify="center"
   >
     <v-col
+      v-if="favoritesList.length"
       class="mt-3"
       sm="6"
-      v-if="favoritesList.length"
     >
       <v-btn @click="$router.go(-1)">
         <v-icon left>
@@ -16,9 +16,9 @@
       </v-btn>
     </v-col>
     <v-col
+      v-if="favoritesList.length"
       class="mt-3"
       sm="6"
-      v-if="favoritesList.length"
     >
       <v-btn
         class="float-right"
@@ -33,12 +33,12 @@
       cols="12"
     >
       <v-data-table
+        v-if="favoritesList.length"
         :headers="favorites.headers"
         :items="favoritesList"
         :loading="favorites.loading.state"
         :loading-text="favorites.loading.text"
         elevation="1"
-        v-if="favoritesList.length"
       >
         <template v-slot:item.dob.date="{ item }">
           {{ new Date(item.dob.date).toDateString() }}
