@@ -26,24 +26,11 @@
       app
       clipped-left
       fixed
-      elevate-on-scroll>
+      elevate-on-scroll
+    >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title v-text="title" />
       <v-spacer />
-      <v-tooltip bottom>
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn
-            color="primary"
-            dark
-            v-bind="attrs"
-            v-on="on"
-          >
-            <v-icon left>mdi-database-refresh</v-icon>
-            Get new data
-          </v-btn>
-        </template>
-        <span>Discard current data and, get new random data from randomuser.me API</span>
-      </v-tooltip>
     </v-app-bar>
     <v-main>
       <v-container>
@@ -61,16 +48,16 @@ export default {
       items: [
         {
           icon: 'mdi-apps',
-          title: 'Start',
+          title: 'Users',
           to: '/'
         },
         {
           icon: 'mdi-heart',
-          title: 'Favorites Lists',
-          to: '/favorites-lists'
+          title: 'Favorites',
+          to: '/favorites'
         }
       ],
-      title: 'Random Users Explorer'
+      title: 'Frontend Vue.js Developer Demo'
     }
   }
 }
