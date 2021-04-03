@@ -8,9 +8,9 @@
       cols="12"
     >
       <v-btn
-        @click="$router.go(-1)"
         class="float-left"
-        >
+        @click="$router.go(-1)"
+      >
         <v-icon left>
           mdi-chevron-left
         </v-icon>
@@ -18,8 +18,8 @@
       </v-btn>
       <v-btn
         v-show="isFavorite(user)"
-        @click="removeFavorite(user)"
         class="float-right"
+        @click="removeFavorite(user)"
       >
         <v-icon left>
           mdi-heart-minus
@@ -27,8 +27,8 @@
         Remove from favorites
       </v-btn>
       <v-btn
-        class="float-right"
         v-show="!isFavorite(user)"
+        class="float-right"
         @click="addFavorite(user)"
       >
         <v-icon left>
