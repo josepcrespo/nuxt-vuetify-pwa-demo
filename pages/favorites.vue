@@ -20,6 +20,12 @@
           Download CSV file
         </v-btn>
       </download-csv>
+      <v-btn class="float-right mr-4">
+        <v-icon left>
+          mdi-cloud-upload
+        </v-icon>
+        Share list
+      </v-btn>
     </v-col>
     <v-col cols="12">
       <users-data-table
@@ -57,7 +63,7 @@ export default {
     return {
       favorites: {
         loading: {
-          state: false,
+          state: true,
           text: 'Loading favorite users… please wait'
         }
       }
