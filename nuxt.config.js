@@ -19,8 +19,11 @@ export default {
   css: [
   ],
 
-  // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
+  // Plugins to run before rendering page:
+  // https://go.nuxtjs.dev/config-plugins
+  // https://nuxtjs.org/docs/2.x/directory-structure/plugins#vue-plugins
   plugins: [
+    '~/plugins/vue-json-csv.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
