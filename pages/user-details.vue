@@ -5,23 +5,21 @@
   >
     <v-col
       class="mt-3"
-      sm="6"
+      cols="12"
     >
-      <v-btn @click="$router.go(-1)">
+      <v-btn
+        @click="$router.go(-1)"
+        class="float-left"
+        >
         <v-icon left>
           mdi-chevron-left
         </v-icon>
         Back
       </v-btn>
-    </v-col>
-    <v-col
-      class="mt-3"
-      sm="6"
-    >
       <v-btn
-        class="float-right"
         v-show="isFavorite(user)"
         @click="removeFavorite(user)"
+        class="float-right"
       >
         <v-icon left>
           mdi-heart-minus
@@ -108,7 +106,7 @@
 
 <script>
 export default {
-  name: 'AppUserDetails',
+  name: 'UserDetailsPage',
   async asyncData ({ params }) {
     const user = await params.user
     return { user }
