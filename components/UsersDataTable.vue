@@ -1,5 +1,5 @@
 <template>
-  <client-only>
+  <client-only><!-- https://github.com/vuetifyjs/vuetify/issues/9624#issuecomment-574555018 -->
     <v-data-table
       :headers="headers"
       :items="usersList"
