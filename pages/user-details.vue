@@ -88,7 +88,6 @@
       md="8"
       class="map-cell"
     >
-      <!-- https://maps.google.com/maps?q=-25.0524,-47.2084&z=7&output=embed -->
       <iframe
         width="100%"
         height="100%"
