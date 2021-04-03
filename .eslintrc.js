@@ -15,7 +15,7 @@ module.exports = {
   ],
   // add your custom rules here
   rules: {
-    'vue/valid-v-slot': ['warn', {
+    'vue/valid-v-slot': ['off', {
       allowModifiers: true
     }]
   }
