@@ -197,6 +197,7 @@ export default {
           }
         }).finally(() => {
           this.shareList.snackbar.model = true
+          this.shareList.dialog.model = false
           this.favorites.sending.state = false
         })
       }
