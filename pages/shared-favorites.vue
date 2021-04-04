@@ -4,6 +4,7 @@
     justify="center"
   >
     <v-col
+      v-if="sharedFavoritesLists.length"
       cols="1"
       class="mt-3"
       align="right"
@@ -13,12 +14,12 @@
       Lists
     </v-col>
     <v-col
+      v-if="sharedFavoritesLists.length"
       cols="11"
       class="mt-3 shared-lists"
       style="height: 72px;"
     >
       <v-select
-        v-if="sharedFavoritesLists.length"
         v-model="sharedFavorites.current"
         class="float-right"
         :items="sharedFavoritesLists"
