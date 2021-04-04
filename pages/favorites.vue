@@ -20,7 +20,7 @@
         </v-btn>
       </download-csv>
       <v-dialog
-        v-model="shareListDialog"
+        v-model="shareList.dialog"
         max-width="480"
         @click:outside="$refs.form.resetValidation()"
       >
@@ -45,20 +45,20 @@
           </v-card-text>
           <v-form ref="form">
             <v-text-field
-              v-model="sharedListName"
+              v-model="sharedListName.value"
               clearable
               class="mx-6"
               counter
               label="Shared List Name"
               maxlength="255"
-              :rules="sharedListNameValidations"
+              :rules="sharedListName.validations"
             />
           </v-form>
           <v-card-actions>
             <v-spacer />
             <v-btn
               text
-              @click="shareListDialog = false;
+              @click="shareList.dialog = false;
                       $refs.form.resetValidation()"
             >
               Cancel
@@ -73,6 +73,23 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
+      <v-snackbar
+        v-model="shareList.snackbar.model"
+        :color="shareList.snackbar.color"
+        :multi-line="true"
+        >
+        {{ shareList.snackbar.text }}
+        <template v-slot:action="{ attrs }">
+          <v-btn
+            color="primary"
+            text
+            v-bind="attrs"
+            @click="shareList.snackbar.model = false"
+          >
+            Close
+          </v-btn>
+        </template>
+      </v-snackbar>
     </v-col>
     <v-col cols="12">
       <users-data-table
@@ -112,15 +129,27 @@ export default {
         loading: {
           state: true,
           text: 'Loading favorite users… please wait'
+        },
+        sending: {
+          state: false
         }
       },
-      sharedListName: '',
-      sharedListNameValidations: [
-        value => !!value || 'Required.',
-        value => (value && value.length >= 3) || 'Min 3 characters',
-        value => (value || '').length <= 255 || 'Max 255 characters'
-      ],
-      shareListDialog: false
+      sharedListName: {
+        value: '',
+        validations: [
+          value => !!value || 'Required.',
+          value => (value && value.length >= 3) || 'Min 3 characters',
+          value => (value || '').length <= 255 || 'Max 255 characters'
+        ]
+      },
+      shareList: {
+        dialog: false,
+        snackbar: {
+          color: '',
+          model: false,
+          text: ''
+        }
+      }
     }
   },
   computed: {
@@ -148,13 +177,25 @@ export default {
     },
     submitList () {
       if (this.$refs.form.validate()) {
-        // Initialize our Feathers client.
-        const feathersClient = window.feathers()
-        // Create the list on the service.
-        const favService = feathersClient.service('favorites')
-        favService.create({
-          listName: this.sharedListName,
-          favorites: this.favoritesList
+        this.favorites.sending.state = true
+        this.$axios.$post(
+          `${process.env.favoritesApiBaseUrl}/favorites`, {
+            listName: this.sharedListName.value,
+            favorites: this.favoritesList
+          }
+        ).then((response) => {
+          this.shareList.snackbar.color = 'green lighten-2'
+          this.shareList.snackbar.text = 'Your list of favorite users has been shared!'
+        }).catch((error) => {
+          // eslint-disable-next-line no-console
+          console.warn('Something went wrong: %o', error)
+          this.shareList.snackbar.color = 'red lighten-2'
+          this.shareList.snackbar.text =
+            `Error: ${error.message}. 
+            ${error.response.data.errors.map(e => e.message).join('. ')}`
+        }).finally(() => {
+          this.shareList.snackbar.model = true
+          this.favorites.sending.state = false
         })
       }
     }
