@@ -95,7 +95,7 @@
             color="primary"
             to="/"
           >
-            Back to users list
+            Back to the users list
           </v-btn>
         </template>
       </v-banner>
