@@ -77,7 +77,7 @@
         v-model="shareList.snackbar.model"
         :color="shareList.snackbar.color"
         :multi-line="true"
-        >
+      >
         {{ shareList.snackbar.text }}
         <template v-slot:action="{ attrs }">
           <v-btn
