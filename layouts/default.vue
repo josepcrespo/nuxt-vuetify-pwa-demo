@@ -53,8 +53,13 @@ export default {
         },
         {
           icon: 'mdi-heart',
-          title: 'Favorites',
+          title: 'Local Favorites',
           to: '/favorites'
+        },
+        {
+          icon: 'mdi-hand-heart',
+          title: 'Shared Favorites',
+          to: '/shared-favorites'
         }
       ],
       title: 'Frontend Vue.js Developer Demo'
