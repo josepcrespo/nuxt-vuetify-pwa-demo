@@ -190,9 +190,11 @@ export default {
           // eslint-disable-next-line no-console
           console.warn('Something went wrong: %o', error)
           this.shareList.snackbar.color = 'red lighten-2'
-          this.shareList.snackbar.text =
-            `Error: ${error.message}. 
-            ${error.response.data.errors.map(e => e.message).join('. ')}`
+          this.shareList.snackbar.text = `Error: ${error.message}.`
+          if (Array.isArray(error.response.data.errors)) {
+            this.shareList.snackbar.text +=
+              ` ${error.response.data.errors.map(e => e.message).join('. ')}`
+          }
         }).finally(() => {
           this.shareList.snackbar.model = true
           this.favorites.sending.state = false
