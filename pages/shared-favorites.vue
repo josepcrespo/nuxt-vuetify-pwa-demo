@@ -21,7 +21,7 @@
     >
       <v-select
         v-model="sharedFavorites.current"
-        class="float-right"
+        class="float-right mb-0"
         :items="sharedFavoritesLists"
         item-text="listName"
         item-value="favorites"

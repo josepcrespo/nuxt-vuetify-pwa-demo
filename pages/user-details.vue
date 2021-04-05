@@ -4,11 +4,11 @@
     justify="center"
   >
     <v-col
-      class="mt-3"
       cols="12"
+      style="height: 72px;"
     >
       <v-btn
-        class="float-left"
+        class="float-left mt-3"
         @click="$router.go(-1)"
       >
         <v-icon left>
@@ -18,7 +18,7 @@
       </v-btn>
       <v-btn
         v-show="isFavorite(user)"
-        class="float-right"
+        class="float-right mt-3 ml-4"
         @click="removeFavorite(user)"
       >
         <v-icon left>
@@ -28,7 +28,7 @@
       </v-btn>
       <v-btn
         v-show="!isFavorite(user)"
-        class="float-right"
+        class="float-right mt-3 ml-4"
         @click="addFavorite(user)"
       >
         <v-icon left>
@@ -36,6 +36,14 @@
         </v-icon>
         Add to favorites
       </v-btn>
+      <v-select
+        v-model="mapProviders.model"
+        :items="mapProviders.items"
+        background-color="#f5f5f5"
+        class="float-right mt-3 mb-0"
+        dense
+        solo
+      />
     </v-col>
     <v-col
       cols="12"
@@ -89,6 +97,7 @@
       class="map-cell"
     >
       <iframe
+        v-show="mapProviders.model === 'Google Maps'"
         width="100%"
         height="100%"
         frameborder="0"
@@ -97,7 +106,19 @@
         marginheight="0"
         marginwidth="0"
         class="v-card v-sheet pa-3"
-        :src="getMapSource(user.location.coordinates)"
+        :src="getGoogleMapSource(user.location.coordinates)"
+      />
+      <iframe
+        v-show="mapProviders.model !== 'Google Maps'"
+        width="100%"
+        height="100%"
+        frameborder="0"
+        loading="lazy"
+        scrolling="no"
+        marginheight="0"
+        marginwidth="0"
+        class="v-card v-sheet pa-3"
+        :src="getOpenStreetMapSource(user.location.coordinates)"
       />
     </v-col>
   </v-row>
@@ -110,6 +131,14 @@ export default {
     const user = await params.user
     return { user }
   },
+  data () {
+    return {
+      mapProviders: {
+        model: 'Google Maps',
+        items: ['Google Maps', 'OpenStreetMap']
+      }
+    }
+  },
   methods: {
     addFavorite (user) {
       this.$store.commit('favorites/add', user)
@@ -117,9 +146,15 @@ export default {
     removeFavorite (user) {
       this.$store.commit('favorites/remove', user)
     },
-    getMapSource (coordinates) {
+    getGoogleMapSource (coordinates) {
       return `https://maps.google.com/maps?q=${coordinates.latitude},` +
              `${coordinates.longitude}&z=4&output=embed`
+    },
+    getOpenStreetMapSource (coordinates) {
+      return 'https://www.openstreetmap.org/export/embed.html' +
+             '?layer=mapnik' +
+             `&marker=${coordinates.latitude},` +
+             `${coordinates.longitude}`
     },
     isFavorite (user) {
       return this.$store.state.favorites.list.find(
