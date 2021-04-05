@@ -92,7 +92,7 @@ export default {
       title: 'Fullstack (Vue.js/Node.js) Developer Demo'
     }
   },
-  created () {
+  mounted () {
     if (this.$colorMode.value === 'dark') {
       this.themes.model = {
         text: 'Dark theme',
@@ -109,12 +109,10 @@ export default {
   },
   methods: {
     changeTheme () {
-      // Possible values are: dark, light, system
-      // https://color-mode.nuxtjs.org/
-      if (this.themes.model.value === 'dark') {
-        this.$colorMode.preference = 'dark'
-      } else {
+      if (this.$colorMode.value === 'dark') {
         this.$colorMode.preference = 'light'
+      } else {
+        this.$colorMode.preference = 'dark'
       }
     }
   }
