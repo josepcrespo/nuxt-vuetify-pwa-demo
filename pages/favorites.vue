@@ -20,7 +20,7 @@
         </v-btn>
       </download-csv>
       <v-dialog
-        v-model="shareList.dialog"
+        v-model="shareList.dialog.model"
         max-width="480"
         @click:outside="$refs.form.resetValidation()"
       >
@@ -58,7 +58,7 @@
             <v-spacer />
             <v-btn
               text
-              @click="shareList.dialog = false;
+              @click="shareList.dialog.model = false;
                       $refs.form.resetValidation()"
             >
               Cancel
@@ -143,7 +143,9 @@ export default {
         ]
       },
       shareList: {
-        dialog: false,
+        dialog: {
+          model: false
+        },
         snackbar: {
           color: '',
           model: false,
