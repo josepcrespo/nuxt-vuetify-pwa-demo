@@ -4,7 +4,7 @@
     justify="center"
   >
     <v-col
-      v-if="sharedFavoritesLists.length"
+      v-if="sharedFavorites.loading.state || sharedFavoritesLists.length"
       cols="1"
       class="mt-3"
       align="right"
@@ -14,7 +14,7 @@
       Lists
     </v-col>
     <v-col
-      v-if="sharedFavoritesLists.length"
+      v-if="sharedFavorites.loading.state || sharedFavoritesLists.length"
       cols="11"
       class="mt-3 shared-lists"
       style="height: 72px;"
@@ -33,8 +33,8 @@
     </v-col>
     <v-col cols="12">
       <users-data-table
-        v-if="sharedFavoritesLists.length"
-        :loading-state="sharedFavorites.loading.state"
+        v-if="sharedFavorites.loading.state || sharedFavoritesLists.length"
+        :loading-state="sharedFavorites.loading.state && sharedFavoritesLists.length === 0"
         :loading-text="sharedFavorites.loading.text"
         :users-list="sharedFavorites.current"
       />
@@ -57,6 +57,18 @@
         </template>
       </v-banner>
     </v-col>
+    <v-snackbar
+      v-model="snackbar.model"
+      :color="snackbar.color"
+      :timeout="snackbar.timeout"
+    >
+      <v-progress-circular
+        indeterminate
+        size="20"
+        class="mr-2"
+      />
+      {{ snackbar.text }}
+    </v-snackbar>
   </v-row>
 </template>
 
@@ -71,6 +83,12 @@ export default {
           text: 'Loading shared favorite users lists… please wait'
         },
         current: []
+      },
+      snackbar: {
+        color: 'green lighten-2',
+        model: true,
+        text: 'Checking for shared favorites lists… please wait',
+        timeout: -1
       }
     }
   },
@@ -80,6 +98,7 @@ export default {
     }
   },
   created () {
+    this.setCurrentListModel()
     this.getSharedFavorites()
   },
   methods: {
@@ -88,15 +107,19 @@ export default {
         `${process.env.favoritesApiBaseUrl}/favorites`
       ).then((response) => {
         this.$store.commit('sharedFavorites/set', response.data)
-        this.setSharedFavoritesListModel()
+        this.setCurrentListModel()
+        this.snackbar.model = false
       }).catch((error) => {
         // eslint-disable-next-line no-console
         console.warn('Something went wrong: %o', error)
+        this.snackbar.color = 'red lighten-2'
+        this.snackbar.text = error.message
+        this.snackbar.timeout = 5000
       }).finally(() => {
         this.sharedFavorites.loading.state = false
       })
     },
-    setSharedFavoritesListModel () {
+    setCurrentListModel () {
       this.sharedFavorites.current =
         this.sharedFavoritesLists.length
           ? this.sharedFavoritesLists[0].favorites
