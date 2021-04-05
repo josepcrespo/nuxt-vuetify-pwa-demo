@@ -67,6 +67,7 @@ export default {
     /**
      * As described here:
      * https://github.com/nuxt-community/vuetify-module/issues/101#issuecomment-518577403
+     * https://github.com/nuxt-community/vuetify-module/issues/101#issuecomment-724091700
      *
      * Defining options like this will make the Vuetify colors will be
      * bundled by Webpack at build step and, should fixes the error:
@@ -90,6 +91,7 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    // https://github.com/nuxt-community/vuetify-module/issues/101#issuecomment-724091700
     transpile: [/vuetify/]
   }
 }
