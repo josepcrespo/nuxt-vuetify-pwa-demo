@@ -7,7 +7,7 @@
     >
       <v-list>
         <v-list-item
-          v-for="(item, i) in items"
+          v-for="(item, i) in menuItems"
           :key="i"
           :to="item.to"
           router
@@ -31,6 +31,19 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title v-text="title" />
       <v-spacer />
+      <v-select
+        v-model="themes.model"
+        :full-width="false"
+        :items="themes.items"
+        :prepend-inner-icon="themes.model.icon"
+        :return-object="true"
+        background-color="#f5f5f5"
+        class="float-right mt-6"
+        dense
+        solo
+        style="max-width: 80px;"
+        @change="changeTheme()"
+      />
     </v-app-bar>
     <v-main>
       <v-container>
@@ -42,10 +55,11 @@
 
 <script>
 export default {
+  name: 'DefaultLayout',
   data () {
     return {
       drawer: false,
-      items: [
+      menuItems: [
         {
           icon: 'mdi-apps',
           title: 'Users',
@@ -62,7 +76,46 @@ export default {
           to: '/shared-favorites'
         }
       ],
-      title: 'Frontend Vue.js Developer Demo'
+      selectedMenuItem: null,
+      themes: {
+        model: {},
+        items: [{
+          text: 'Light theme',
+          value: 'light',
+          icon: 'mdi-white-balance-sunny'
+        }, {
+          text: 'Dark theme',
+          value: 'dark',
+          icon: 'mdi-weather-night'
+        }]
+      },
+      title: 'Fullstack (Vue.js/Node.js) Developer Demo'
+    }
+  },
+  created () {
+    if (this.$colorMode.value === 'dark') {
+      this.themes.model = {
+        text: 'Dark theme',
+        value: 'dark',
+        icon: 'mdi-weather-night'
+      }
+    } else {
+      this.themes.model = {
+        text: 'Light theme',
+        value: 'light',
+        icon: 'mdi-white-balance-sunny'
+      }
+    }
+  },
+  methods: {
+    changeTheme () {
+      // Possible values are: dark, light, system
+      // https://color-mode.nuxtjs.org/
+      if (this.themes.model.value === 'dark') {
+        this.$colorMode.preference = 'dark'
+      } else {
+        this.$colorMode.preference = 'light'
+      }
     }
   }
 }
