@@ -31,7 +31,7 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title v-text="title" />
       <v-spacer />
-      <v-select
+      <!-- <v-select
         v-model="themes.model"
         :full-width="false"
         :items="themes.items"
@@ -43,7 +43,7 @@
         solo
         style="max-width: 80px;"
         @change="changeTheme()"
-      />
+      /> -->
     </v-app-bar>
     <v-main>
       <v-container>
