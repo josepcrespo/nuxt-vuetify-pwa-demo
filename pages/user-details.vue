@@ -3,10 +3,7 @@
     align="start"
     justify="center"
   >
-    <v-col
-      cols="12"
-      style="height: 72px;"
-    >
+    <v-col cols="12">
       <v-btn
         class="float-left mt-3"
         @click="$router.go(-1)"
@@ -40,9 +37,10 @@
         v-model="mapProviders.model"
         :items="mapProviders.items"
         background-color="#f5f5f5"
-        class="float-right mt-3 mb-0"
+        class="float-right mt-3 ml-4 mb-0"
         dense
         solo
+        style="width: 180px; height: 36px;"
       />
     </v-col>
     <v-col
