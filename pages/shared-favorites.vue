@@ -41,10 +41,10 @@
       <v-banner v-else>
         <v-icon
           slot="icon"
-          color="warning"
+          color="orange lighten-2"
           size="36"
         >
-          mdi-warning
+          mdi-alert-circle
         </v-icon>
         There are no shared favorite user lists at this time.
         <template v-slot:actions>

@@ -101,10 +101,10 @@
       <v-banner v-else>
         <v-icon
           slot="icon"
-          color="warning"
+          color="orange lighten-2"
           size="36"
         >
-          mdi-warning
+          mdi-alert-circle
         </v-icon>
         The favorites list is empty at this moment.
         <template v-slot:actions>
