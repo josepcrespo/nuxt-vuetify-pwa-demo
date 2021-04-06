@@ -51,7 +51,7 @@ $ git clone https://github.com/josepcrespo/nuxt-vuetify-pwa-demo.git && cd nuxt-
 
 The PWA will be available at [http://localhost:3000](http://localhost:3000)
 
-> :warning: With this, you'll get the frontend part of the project, if you want to connect with the backend service for sharing lists of favorite users, check also the README.md file of the second part of this technical test, [backend project](https://github.com/josepcrespo/feathers-microservice-demo).
+> :warning: With this, you'll get the frontend part of the project, if you want to connect with the backend service for sharing lists of favorite users, check also the README.md file of the second part of this technical test, the [backend project](https://github.com/josepcrespo/feathers-microservice-demo).
 
 ## Local setup (if don't want a Docker setup)
 
