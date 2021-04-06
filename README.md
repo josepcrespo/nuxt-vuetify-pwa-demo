@@ -16,7 +16,7 @@ This project uses [Nuxt](https://nuxtjs.org/). An open source framework to devel
 
 I've made an extensive use of the latest version of [ECMAScript](https://en.wikipedia.org/wiki/ECMAScript) and, used a few cool modern development techniques and tools like: [Docker](https://www.docker.com/), [Node.js](https://nodejs.org/), [npm](https://www.npmjs.com/), [yarn](https://yarnpkg.com/), [Axios](https://axios-http.com/), [Nuxt PWA](https://pwa.nuxtjs.org/), live code reload on development, support for SSR, linters for JavaScript and CSS, [Vuetify](https://vuetifyjs.com/), transpiling Javascript with [Babel](https://babeljs.io/)… to name some of the most relevant ones.
 
-And, of course, I’ve used [Git](https://git-scm.com/) for code control version and, a basic knowledge of the [Unix Shell](https://en.wikipedia.org/wiki/Unix_shell) for interacting with the respective [CLI (command-line interface)](https://en.wikipedia.org/wiki/Command-line_interface) for Git, Docker and, Feathers. The full project has been developed on [macOS](https://www.apple.com/es/macos/what-is/) [Catalina](https://en.wikipedia.org/wiki/MacOS_Catalina) (v10.15.6) on top of a [MacBook Air mid 2012](https://support.apple.com/kb/SP670?viewlocale=en_US&locale=es_ES).
+And, of course, I’ve used [Git](https://git-scm.com/) for code control version and, a basic knowledge of the [Unix Shell](https://en.wikipedia.org/wiki/Unix_shell) for interacting with the respective [CLI (command-line interface)](https://en.wikipedia.org/wiki/Command-line_interface) for Git, Docker and, Feathers. The full project has been developed on [macOS](https://www.apple.com/es/macos/what-is/) [Catalina](https://en.wikipedia.org/wiki/MacOS_Catalina) (v10.15.7) on top of a [MacBook Air mid 2012](https://support.apple.com/kb/SP670?viewlocale=en_US&locale=es_ES).
 
 ## Project introduction
 
@@ -50,6 +50,8 @@ $ git clone https://github.com/josepcrespo/nuxt-vuetify-pwa-demo.git && cd nuxt-
 ```
 
 The PWA will be available at [http://localhost:3000](http://localhost:3000)
+
+> :warning: With this, you'll get the frontend part of the project, if you want to connect with the backend service for sharing lists of favorite users, check also the README.md file of the second part of this technical test, [backend project](https://github.com/josepcrespo/feathers-microservice-demo).
 
 ## Local setup (if don't want a Docker setup)
 
