@@ -104,7 +104,7 @@ export default {
     autoTracking: {
       screenview: true
     }
-  }
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
