@@ -45,11 +45,15 @@ Implement a microservice that allows the user to share his own list of favorite 
 
 You need [Git](https://git-scm.com) >= `v2.24.3` and, [Docker Engine](https://docker.com/) >= `v19.03.13`. Make sure you don't have any other service using the 3000 port.
 
+Execute the following single line list of commands on your favorite shell:
+
 ```bash
 $ git clone https://github.com/josepcrespo/nuxt-vuetify-pwa-demo.git && cd nuxt-vuetify-pwa-demo && docker-compose build --no-cache --force-rm && docker-compose up
 ```
 
-The PWA will be available at [http://localhost:3000](http://localhost:3000)
+The PWA will be available at [http://localhost:3000](http://localhost:3000) after the process finishes (it may take a few minutes), you will see something like this:
+
+![finished process](readme_images/dockerized-microservice-up.png)
 
 > :warning: With this, you'll get the frontend part of the project, if you want to connect with the backend service for sharing lists of favorite users, check also the README.md file of the second part of this technical test, the [backend project](https://github.com/josepcrespo/feathers-microservice-demo).
 
