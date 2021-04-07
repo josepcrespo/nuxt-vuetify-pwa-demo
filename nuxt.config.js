@@ -1,4 +1,6 @@
 export default {
+  // https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-dev
+  dev: process.env.NODE_ENV !== 'production',
   env: {
     favoritesApiBaseUrl: process.env.FAVORITES_API_BASE_URL || 'http://localhost:3030'
   },
@@ -39,20 +41,23 @@ export default {
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
     // https://color-mode.nuxtjs.org/
-    '@nuxtjs/color-mode'
+    '@nuxtjs/color-mode',
+    // https://google-analytics.nuxtjs.org/
+    '@nuxtjs/google-analytics',
+    // https://go.nuxtjs.dev/pwa
+    '@nuxtjs/pwa'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios',
-    // https://go.nuxtjs.dev/pwa
-    '@nuxtjs/pwa'
+    '@nuxtjs/axios'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseUrl: 'https://randomuser.me/api'
+    baseUrl: 'https://randomuser.me/api',
+    browserBaseURL: 'https://randomuser.me/api'
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
@@ -88,6 +93,18 @@ export default {
     classSuffix: '-mode',
     storageKey: 'nuxt-color-mode'
   },
+
+  // https://google-analytics.nuxtjs.org/setup
+  googleAnalytics: {
+    id: process.env.GOOGLE_ANALYTICS_ID || 'UA-XXX-X',
+    asyncID: async (context) => {
+      return process.env.GOOGLE_ANALYTICS_ID || 'UA-XXX-X' 
+    },
+    dev: process.env.NODE_ENV !== 'production' ? true : false,
+    autoTracking: {
+      screenview: true
+    }
+  }
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
