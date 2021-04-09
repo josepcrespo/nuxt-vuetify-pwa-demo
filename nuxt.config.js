@@ -96,9 +96,9 @@ export default {
 
   // https://google-analytics.nuxtjs.org/setup
   googleAnalytics: {
-    id: process.env.GOOGLE_ANALYTICS_ID || 'UA-XXX-X',
+    id: process.env.GOOGLE_ANALYTICS_ID || ' UA-194037078-2',
     asyncID: async (context) => {
-      return process.env.GOOGLE_ANALYTICS_ID || 'UA-XXX-X' 
+      return process.env.GOOGLE_ANALYTICS_ID || ' UA-194037078-2' 
     },
     dev: process.env.NODE_ENV !== 'production' ? true : false,
     autoTracking: {
