@@ -100,6 +100,9 @@ export default {
     asyncID: async (context) => {
       return process.env.GOOGLE_ANALYTICS_ID || ' UA-194037078-2' 
     },
+    debug: {
+      sendHitTask: process.env.NODE_ENV !== 'development'
+    },
     dev: process.env.NODE_ENV !== 'production' ? true : false,
     autoTracking: {
       screenview: true
